@@ -34,24 +34,25 @@ fi
 
 # compile root
 # https://root.cern/install/build_from_source/
-cd ${repositoryRoot}/root
-mkdir -p include
-export C_INCLUDE_PATH=$C_INCLUDE_PATH:${repositoryRoot}/root/include
-export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:${repositoryRoot}/root/include
-# line below is because of issue, maybe better solution exist
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/afs/ifh.de/group/pitz/doocs/amd64_rhel60/root/6.02.00/lib
-cmake -H. -B../build/root/Debug -DCMAKE_BUILD_TYPE=Debug
-cd ../build/root/Debug
-cmake --build .
+#cd ${repositoryRoot}/root
+#mkdir -p include
+#export C_INCLUDE_PATH=$C_INCLUDE_PATH:${repositoryRoot}/root/include
+#export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:${repositoryRoot}/root/include
+## line below is because of issue, maybe better solution exist
+#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/afs/ifh.de/group/pitz/doocs/amd64_rhel60/root/6.02.00/lib
+#cmake -H. -B../build/root/Debug -DCMAKE_BUILD_TYPE=Debug
+#cd ../build/root/Debug
+#cmake --build .
 
 
 #mkdir <builddir> <installdir>
 # build dir
+installDir=/afs/ifh.de/group/pitz/doocs/data/ers/sys/Nitrogen/opt/root3
 mkdir -p ${repositoryRoot}/build/root/Debug
 # install dir
-rm -fr /afs/ifh.de/group/pitz/doocs/data/ers/sys/Nitrogen/opt/root2
-mkdir -p /afs/ifh.de/group/pitz/doocs/data/ers/sys/Nitrogen/opt/root2
+rm -fr ${installDir}
+mkdir -p ${installDir}
 # cd to build dir
 cd ${repositoryRoot}/build/root/Debug
-cmake -DCMAKE_INSTALL_PREFIX=/afs/ifh.de/group/pitz/doocs/data/ers/sys/Nitrogen/opt/root2 ${repositoryRoot}/root -DCMAKE_BUILD_TYPE=Debug -Wno-dev
+cmake -DCMAKE_INSTALL_PREFIX=${installDir} ${repositoryRoot}/root -DCMAKE_BUILD_TYPE=Debug -Wno-dev
 cmake --build . --target install 
