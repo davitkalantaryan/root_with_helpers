@@ -12,7 +12,8 @@ ROOT_HDRSPP    = $$system($${repoRootPath}/scripts/findfiles $${repoRootPath}/ro
 INCLUDEPATH += $${repoRootPath}/root/core/base/inc
 INCLUDEPATH += $${repoRootPath}/root/core/meta/inc
 INCLUDEPATH += $${repoRootPath}/root/graf2d/gpad/inc
-INCLUDEPATH += $${repoRootPath}/root/graf2d/gpaf/inc
+INCLUDEPATH += $${repoRootPath}/root/graf2d/graf/inc
+INCLUDEPATH += $${repoRootPath}/root/math/mathcore/inc
 
 SOURCES =  $$ROOT_SRCS_PP
 SOURCES += $$ROOT_SRCS_XX
