@@ -10,6 +10,9 @@ trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
 # echo an error message before exiting
 #trap 'echo "\"${last_command}\" command finished with exit code $?."' EXIT
 
+# some defs
+rootVersinName=v6-02-00
+
 scriptFileFullPath=`readlink -f ${0}`
 scriptDirectory=`dirname ${scriptFileFullPath}`
 cd ${scriptDirectory}/..
@@ -32,6 +35,9 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then
 #else
 fi
 
+cd ${repositoryRoot}/root
+git checkout ${rootVersinName}
+
 # compile root
 # https://root.cern/install/build_from_source/
 #cd ${repositoryRoot}/root
@@ -47,7 +53,7 @@ fi
 
 #mkdir <builddir> <installdir>
 # build dir
-installDir=/afs/ifh.de/group/pitz/doocs/data/ers/sys/Nitrogen/opt/root3
+installDir=/afs/ifh.de/group/pitz/doocs/data/ers/sys/Nitrogen/opt/root-${rootVersinName}
 mkdir -p ${repositoryRoot}/build/root/Debug
 # install dir
 rm -fr ${installDir}
