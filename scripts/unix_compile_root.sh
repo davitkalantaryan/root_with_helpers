@@ -53,12 +53,13 @@ git checkout ${rootVersinName}
 
 #mkdir <builddir> <installdir>
 # build dir
-installDir=/afs/ifh.de/group/pitz/doocs/data/ers/sys/Nitrogen/opt/root-${rootVersinName}
-mkdir -p ${repositoryRoot}/build/root/Debug
+installDir=/afs/ifh.de/group/pitz/doocs/data/ers/sys/${lsbCode}/opt/root-${rootVersinName}
+buildDir=${repositoryRoot}/build/root-${rootVersinName}/Debug
+mkdir -p ${buildDir}
 # install dir
 rm -fr ${installDir}
 mkdir -p ${installDir}
 # cd to build dir
-cd ${repositoryRoot}/build/root/Debug
+cd ${buildDir}
 cmake -DCMAKE_INSTALL_PREFIX=${installDir} ${repositoryRoot}/root -DCMAKE_BUILD_TYPE=Debug -Wno-dev
 cmake --build . --target install 
