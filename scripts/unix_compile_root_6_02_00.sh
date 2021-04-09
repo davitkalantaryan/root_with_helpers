@@ -39,10 +39,12 @@ fi
 cd ${repositoryRoot}/root
 git checkout ${rootVersinName}
 
+# line below is because of issue, maybe better solution exist
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/afs/ifh.de/group/pitz/doocs/amd64_rhel60/root/6.02.00/lib
+
 # for cmake 
-export PATH=/afs/ifh.de/group/pitz/doocs/data/ers/sys/${lsbCode}/cmake-3.20.0/bin:$PATH
-which g++
-#exit 0
+#export PATH=/afs/ifh.de/group/pitz/doocs/data/ers/sys/${lsbCode}/cmake-3.20.0/bin:$PATH
+#which g++
 
 # think on calling below line
 # source /afs/ifh.de/group/pitz/doocs/data/ers/sys/${lsbCode}/opt/rh/devtoolset-7/enable 
@@ -77,5 +79,6 @@ rm -fr ${installDir}
 mkdir -p ${installDir}
 # cd to build dir
 cd ${buildDir}
-cmake -DCMAKE_INSTALL_PREFIX=${installDir} ${repositoryRoot}/root -DCMAKE_BUILD_TYPE=Debug -Wno-dev
+#cmake -DCMAKE_INSTALL_PREFIX=${installDir} ${repositoryRoot}/root -DCMAKE_BUILD_TYPE=Debug -Wno-dev
+cmake -DCMAKE_INSTALL_PREFIX=${installDir} ${repositoryRoot}/root -Dqt=1  -DCMAKE_BUILD_TYPE=Debug -Wno-dev
 cmake --build . --target install 
