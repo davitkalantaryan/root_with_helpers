@@ -20,5 +20,8 @@ OTHER_FILES	+=	\
 	\
 	$${PWD}/../../scripts/findfiles													\
 	$${PWD}/../../scripts/findfiles.bat												\
+	$${PWD}/../../scripts/unix_clean_repository.sh									\
+	$${PWD}/../../scripts/unix_compile_root_5_24.sh									\
+	$${PWD}/../../scripts/unix_compile_root_5_34_00.sh								\
 	$${PWD}/../../scripts/unix_compile_root_6_02_00.sh								\
 	$${PWD}/../../scripts/unix_copy_all_sources.sh									\
