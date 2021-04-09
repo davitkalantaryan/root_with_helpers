@@ -12,6 +12,7 @@ trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
 
 # some defs
 rootVersinName=v6-02-00
+configuration=Debug
 
 scriptFileFullPath=`readlink -f ${0}`
 scriptDirectory=`dirname ${scriptFileFullPath}`
@@ -38,6 +39,21 @@ fi
 cd ${repositoryRoot}/root
 git checkout ${rootVersinName}
 
+# for cmake 
+export PATH=/afs/ifh.de/group/pitz/doocs/data/ers/sys/${lsbCode}/cmake-3.20.0/bin:$PATH
+which g++
+#exit 0
+
+# think on calling below line
+# source /afs/ifh.de/group/pitz/doocs/data/ers/sys/${lsbCode}/opt/rh/devtoolset-7/enable 
+#  or  
+# export PATH=/afs/ifh.de/group/pitz/doocs/data/ers/sys/Santiago/opt/gcc/7.3.0/bin:$PATH
+# export CPLUS_INCLUDE_PATH=/afs/ifh.de/group/pitz/doocs/data/ers/sys/Santiago/opt/gcc/7.3.0/include/c++/7.3.0
+# export LD_LIBRARY_PATH=/afs/ifh.de/group/pitz/doocs/data/ers/sys/Santiago/opt/gcc/7.3.0/lib64:$LD_LIBRARY_PATH
+# export LIBRARY_PATH=/afs/ifh.de/group/pitz/doocs/data/ers/sys/Santiago/opt/gcc/7.3.0/lib64:$LIBRARY_PATH
+#
+
+#
 # compile root
 # https://root.cern/install/build_from_source/
 #cd ${repositoryRoot}/root
@@ -54,7 +70,7 @@ git checkout ${rootVersinName}
 #mkdir <builddir> <installdir>
 # build dir
 installDir=/afs/ifh.de/group/pitz/doocs/data/ers/sys/${lsbCode}/opt/root-${rootVersinName}
-buildDir=${repositoryRoot}/build/root-${rootVersinName}/Debug
+buildDir=${repositoryRoot}/build/${lsbCode}/${configuration}/root-${rootVersinName}
 mkdir -p ${buildDir}
 # install dir
 rm -fr ${installDir}
