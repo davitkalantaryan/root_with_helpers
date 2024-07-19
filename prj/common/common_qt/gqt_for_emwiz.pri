@@ -8,19 +8,20 @@
 #				Emwiz compilation missing from libGQt library
 #
 
-# some defs
-include ( $${PWD}/sys_common.pri )
-ROOTSYS			= /afs/ifh.de/group/pitz/doocs/data/ers/sys/$$CODENAME/opt/root-v6-02-00
+
+message("!!! $${PWD}/gqt_for_emwiz.pri")
+
+include ( "$${PWD}/../../common/common_qt/flagsandsys_common_private.pri" )
+
+ROOTSYS	= /afs/ifh.de/group/pitz/doocs/data/ers/sys/$$CODENAME/opt/root-v6-02-00
 
 LIBS += -lpcre
 
-repositoryRoot  = $${PWD}/../../..
-gQtIncludeDir   = $${repositoryRoot}/include/gqt_for_emwiz/fromroot
-gQtSourceDir	= $${repositoryRoot}/src/gqt_for_emwiz/fromroot
+gQtIncludeDir   = $${rootWithHelpersRepositoryRoot}/include/gqt_for_emwiz/fromroot
+gQtSourceDir	= $${rootWithHelpersRepositoryRoot}/src/gqt_for_emwiz/fromroot
 
-INCLUDEPATH += $${repositoryRoot}/include
+INCLUDEPATH += $${rootWithHelpersRepositoryRoot}/include
 INCLUDEPATH += $${gQtIncludeDir}
-#INCLUDEPATH += $${repositoryRoot}/root/graf2d/qt/inc
 
 QMAKE_CXXFLAGS += $$system($$ROOTSYS/bin/root-config --cflags)
 
@@ -32,55 +33,16 @@ win32 {
 	QMAKE_CXXFLAGS += -include"gqt_for_emwiz/extra/first_include_for_fixing_issues.h"
 }
 
-#DEFINES += __CINT__
-#DEFINES += Q_MOC_RUN2
 DEFINES += GQT_FOR_EMWIZ_USED
 
 SOURCES += \
-	$${repositoryRoot}/src/gqt_for_emwiz/extra/gqt_for_emwiz_extra01.cpp
+        $${rootWithHelpersRepositoryRoot}/src/gqt_for_emwiz/extra/gqt_for_emwiz_extra01.cpp
 
 HEADERS += \
-	$${repositoryRoot}/include/gqt_for_emwiz/extra/first_include_for_fixing_issues.h			\
-	$${repositoryRoot}/include/gqt_for_emwiz/extra/gqt_for_emwiz.h
+        $${rootWithHelpersRepositoryRoot}/include/gqt_for_emwiz/extra/first_include_for_fixing_issues.h			\
+	$${rootWithHelpersRepositoryRoot}/include/gqt_for_emwiz/extra/gqt_for_emwiz.h
 
 
-SRCS_FROMROOT   = $$system( $${repositoryRoot}/scripts/findfiles $${gQtSourceDir} .cxx)
-INCS_FROMROOT   = $$system( $${repositoryRoot}/scripts/findfiles $${gQtIncludeDir} .h)
+SOURCES += $$files($${gQtSourceDir}/*.cxx,true)
 
-SOURCES += $$SRCS_FROMROOT
-HEADERS += $$INCS_FROMROOT
-
-#SOURCES +=	\
-#	$${gQtSourceDir}/GQtGUI.cxx					\
-#	$${gQtSourceDir}/TGQtDummy.cxx				\
-#	$${gQtSourceDir}/TQtWidget.cxx				\
-#	$${gQtSourceDir}/TGQt.cxx					\
-#	$${gQtSourceDir}/TQtTimer.cxx				\
-#	$${gQtSourceDir}/TQtApplication.cxx			\
-#	$${gQtSourceDir}/TQtPen.cxx					\
-#	$${gQtSourceDir}/TQtBrush.cxx				\
-#	$${gQtSourceDir}/TQtMarker.cxx				\
-#	$${gQtSourceDir}/TQtPadFont.cxx				\
-#	$${gQtSourceDir}/TQtClientFilter.cxx		\
-#	$${gQtSourceDir}/TQtClientGuard.cxx			\
-#	$${gQtSourceDir}/TQtSymbolCodec.cxx			\
-#	$${gQtSourceDir}/TQtClientWidget.cxx		\
-#	$${gQtSourceDir}/TQtEventQueue.cxx			\
-#
-#
-#HEADERS += \
-#	$${gQtIncludeDir}/TQtWidget.h				\
-#	$${gQtIncludeDir}/TGQt.h					\
-#	$${gQtIncludeDir}/TQtTimer.h				\
-#	$${gQtIncludeDir}/TQtApplication.h			\
-#	$${gQtIncludeDir}/TQtPen.h					\
-#	$${gQtIncludeDir}/TQtBrush.h				\
-#	$${gQtIncludeDir}/TQtMarker.h				\
-#	$${gQtIncludeDir}/TQtPadFont.h				\
-#	$${gQtIncludeDir}/TQtClientFilter.h			\
-#	$${gQtIncludeDir}/TQtClientGuard.h			\
-#	$${gQtIncludeDir}/TQtEmitter.h				\
-#	$${gQtIncludeDir}/TQtSymbolCodec.h			\
-#	$${gQtIncludeDir}/TQtClientWidget.h			\
-#	$${gQtIncludeDir}/TQtEventQueue.h			\
-
+HEADERS += $$files($${gQtIncludeDir}/*.h,true)

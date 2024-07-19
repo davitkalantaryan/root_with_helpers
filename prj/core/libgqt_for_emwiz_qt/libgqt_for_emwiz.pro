@@ -8,9 +8,8 @@
 #				Emwiz compilation missing from libGQt library
 #
 
-repositoryRoot	= $${PWD}/../../..
+message("!!! $${_PRO_FILE_}")
 
 TEMPLATE = lib
-
-# include ( $${repositoryRoot}/prj/common/common_qt/sys_common.pri )
-include ( $${repositoryRoot}/prj/common/common_qt/gqt_for_emwiz.pri )
+include ( "$${PWD}/../../common/common_qt/flagsandsys_common_private.pri" )
+include ( $${rootWithHelpersRepositoryRoot}/prj/common/common_qt/gqt_for_emwiz.pri )

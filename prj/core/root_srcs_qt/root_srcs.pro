@@ -1,25 +1,23 @@
 
 TEMPLATE = aux
 
-repoRootPath=$${PWD}/../../..
+message("!!! $${_PRO_FILE_}")
+include ( "$${PWD}/../../common/common_qt/flagsandsys_common_private.pri" )
 
-ROOT_SRCS_PP   = $$system($${repoRootPath}/scripts/findfiles $${repoRootPath}/root .cpp)
-ROOT_SRCS_XX   = $$system($${repoRootPath}/scripts/findfiles $${repoRootPath}/root .cxx)
-#ROOT_SRCS_CC   = $$system($${repoRootPath}/scripts/findfiles $${repoRootPath}/root .cc)
-ROOT_HDRS      = $$system($${repoRootPath}/scripts/findfiles $${repoRootPath}/root .h)
-ROOT_HDRSPP    = $$system($${repoRootPath}/scripts/findfiles $${repoRootPath}/root .hpp)
 
-INCLUDEPATH += $${repoRootPath}/root/core/base/inc
-INCLUDEPATH += $${repoRootPath}/root/core/meta/inc
+CORE_ROOT_DIR = $${rootWithHelpersRepositoryRoot}/.extras/root
 
-INCLUDEPATH += $${repoRootPath}/root/core/cont/inc
 
-INCLUDEPATH += $${repoRootPath}/root/graf2d/gpad/inc
-INCLUDEPATH += $${repoRootPath}/root/graf2d/graf/inc
-INCLUDEPATH += $${repoRootPath}/root/math/mathcore/inc
+SOURCES += $$files($${CORE_ROOT_DIR}/*.cpp,true)
+SOURCES += $$files($${CORE_ROOT_DIR}/*.cxx,true)
+SOURCES += $$files($${CORE_ROOT_DIR}/*.c,true)
 
-SOURCES =  $$ROOT_SRCS_PP
-SOURCES += $$ROOT_SRCS_XX
+HEADERS += $$files($${CORE_ROOT_DIR}/*.h,true)
+HEADERS += $$files($${CORE_ROOT_DIR}/*.hpp,true)
 
-HEADERS =  $$ROOT_HDRS
-HEADERS += $$ROOT_HDRSPP
+INCLUDEPATH += $${CORE_ROOT_DIR}/core/base/inc
+INCLUDEPATH += $${CORE_ROOT_DIR}/core/meta/inc
+INCLUDEPATH += $${CORE_ROOT_DIR}/core/cont/inc
+INCLUDEPATH += $${CORE_ROOT_DIR}/graf2d/gpad/inc
+INCLUDEPATH += $${CORE_ROOT_DIR}/graf2d/graf/inc
+INCLUDEPATH += $${CORE_ROOT_DIR}/math/mathcore/inc
