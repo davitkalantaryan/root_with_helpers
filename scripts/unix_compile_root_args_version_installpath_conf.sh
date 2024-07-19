@@ -10,6 +10,11 @@ trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
 rootVersinName=${1}
 installDir=${2}
 configuration=${3}
+if [ $# -gt 3 ]; then
+    QmakeQt4Path=${4}
+    echo "QmakeQt4Path=${QmakeQt4Path}"
+    ExtraOptions="${ExtraOptions} -DQT_QMAKE_EXECUTABLE=${QmakeQt4Path}"
+fi
 
 scriptFileFullPath=`readlink -f ${0}`
 scriptDirectory=`dirname ${scriptFileFullPath}`
@@ -45,5 +50,9 @@ rm -fr ${installDir}
 mkdir -p ${installDir}
 # cd to build dir
 cd ${buildDir}
-cmake -DCMAKE_INSTALL_PREFIX=${installDir} ${rootDir} -Dqt=1  -DCMAKE_BUILD_TYPE=Debug -Wno-dev
+# cmake -DCMAKE_INSTALL_PREFIX=${installDir} ${rootDir} -Dqt=ON -DCMAKE_BUILD_TYPE=${configuration} -Wno-dev
+# cmake -DCMAKE_INSTALL_PREFIX=${installDir} ${rootDir} -Dqt=ON -DCMAKE_BUILD_TYPE=${configuration} -Wno-dev
+# cmake -DCMAKE_INSTALL_PREFIX=${installDir} ${rootDir} -Dqt=ON -DCMAKE_BUILD_TYPE=${configuration} -Wno-dev -DQT_QMAKE_EXECUTABLE=<path-to-qt4-qmake>
+# cmake -DCMAKE_INSTALL_PREFIX=${installDir} ${rootDir} -Dqt=ON -DCMAKE_BUILD_TYPE=${configuration} -Wno-dev -DQT_QMAKE_EXECUTABLE=/usr/bin/qmake-qt4
+cmake -DCMAKE_INSTALL_PREFIX=${installDir} ${rootDir} -Dqt=1  -DCMAKE_BUILD_TYPE=${configuration} -Wno-dev ${ExtraOptions}
 cmake --build . --target install 

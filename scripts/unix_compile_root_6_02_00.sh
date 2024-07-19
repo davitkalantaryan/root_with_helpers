@@ -9,5 +9,4 @@ rootVersinName=v6-02-00
 installDir=${scriptDirectory}/../install/${rootVersinName}
 configuration=Debug
 
-${scriptDirectory}/unix_compile_root_args_version_installpath_conf.sh \
-    ${rootVersinName} ${installDir} ${configuration}
+${scriptDirectory}/unix_compile_root_args_version_installpath_conf.sh ${rootVersinName} ${installDir} ${configuration}
