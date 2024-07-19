@@ -28,7 +28,9 @@ fi
 
 ${scriptDirectory}/unix_prepare_repo_once.sh
 
-cd ${repositoryRoot}/.extras/root
+rootDir=${repositoryRoot}/.extras/root
+
+cd ${rootDir}
 git checkout ${rootVersinName}
 
 # line below is because of issue, maybe better solution exist
@@ -43,5 +45,5 @@ rm -fr ${installDir}
 mkdir -p ${installDir}
 # cd to build dir
 cd ${buildDir}
-cmake -DCMAKE_INSTALL_PREFIX=${installDir} ${repositoryRoot}/root -Dqt=1  -DCMAKE_BUILD_TYPE=Debug -Wno-dev
+cmake -DCMAKE_INSTALL_PREFIX=${installDir} ${rootDir} -Dqt=1  -DCMAKE_BUILD_TYPE=Debug -Wno-dev
 cmake --build . --target install 

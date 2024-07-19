@@ -94,3 +94,4 @@ prj/tests/googletest_mult/Makefile.googletest_getter
 .DS_Store
 
 /.extras
+/install
