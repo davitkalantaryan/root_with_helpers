@@ -40,7 +40,6 @@ git checkout ${rootVersinName}
 
 # line below is because of issue, maybe better solution exist
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/afs/ifh.de/group/pitz/doocs/amd64_rhel60/root/6.02.00/lib
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${buildDir}/lib
 
 #mkdir <builddir> <installdir>
 # build dir
@@ -56,4 +55,5 @@ cd ${buildDir}
 # cmake -DCMAKE_INSTALL_PREFIX=${installDir} ${rootDir} -Dqt=ON -DCMAKE_BUILD_TYPE=${configuration} -Wno-dev -DQT_QMAKE_EXECUTABLE=<path-to-qt4-qmake>
 # cmake -DCMAKE_INSTALL_PREFIX=${installDir} ${rootDir} -Dqt=ON -DCMAKE_BUILD_TYPE=${configuration} -Wno-dev -DQT_QMAKE_EXECUTABLE=/usr/bin/qmake-qt4
 cmake -DCMAKE_INSTALL_PREFIX=${installDir} ${rootDir} -Dqt=1  -DCMAKE_BUILD_TYPE=${configuration} -Wno-dev ${ExtraOptions}
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${buildDir}/lib
 cmake --build . --target install 
