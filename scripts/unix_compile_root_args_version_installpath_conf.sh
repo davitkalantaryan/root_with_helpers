@@ -13,7 +13,7 @@ configuration=${3}
 if [ $# -gt 3 ]; then
     QmakeQt4Path=${4}
     echo "QmakeQt4Path=${QmakeQt4Path}"
-    ExtraOptions="${ExtraOptions} -DQT_QMAKE_EXECUTABLE=${QmakeQt4Path}"
+    ExtraOptions="${ExtraOptions} -DQT_QMAKE_EXECUTABLE=${QmakeQt4Path}/bin/qmake -DQT_INSTALL_LIBS=${QmakeQt4Path}/lib"
 fi
 
 scriptFileFullPath=`readlink -f ${0}`
