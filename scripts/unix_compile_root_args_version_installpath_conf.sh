@@ -1,5 +1,15 @@
 #!/bin/bash
 
+#
+# example
+# export PATH=~/ers/scripts:${PATH}
+# configuration=Debug
+# lsbCode=$(lsb_release -sc)
+# rootVersinName=v6-02-00_patch01
+# installDir=/afs/ifh.de/group/pitz/doocs/ers/sys/${lsbCode}/rootv/${rootVersinName}
+# ./scripts/unix_compile_root_args_version_installpath_conf.sh ${rootVersinName} ${installDir} ${configuration} ~/ers/sys/${lsbCode}/opt/Qt/4.8.7.m1/bin/qmake
+#
+
 # exit when any command fails
 set -e
 
@@ -13,8 +23,9 @@ configuration=${3}
 if [ $# -gt 3 ]; then
     QmakeQt4Path=${4}
     echo "QmakeQt4Path=${QmakeQt4Path}"
-    ExtraOptions="${ExtraOptions} -DQT_QMAKE_EXECUTABLE=${QmakeQt4Path}/bin/qmake -DQT_INSTALL_LIBS=${QmakeQt4Path}/lib"
+    ExtraOptions="${ExtraOptions} -Dqt=ON -DQT_QMAKE_EXECUTABLE=${QmakeQt4Path}/bin/qmake -DQT_INSTALL_LIBS=${QmakeQt4Path}"
 fi
+echo ExtraOptions=$ExtraOptions
 
 scriptFileFullPath=`readlink -f ${0}`
 scriptDirectory=`dirname ${scriptFileFullPath}`
@@ -36,6 +47,7 @@ ${scriptDirectory}/unix_prepare_repo_once.sh
 rootDir=${repositoryRoot}/.extras/root
 
 cd ${rootDir}
+git clean -xfd
 git checkout ${rootVersinName}
 
 # line below is because of issue, maybe better solution exist
