@@ -54,8 +54,8 @@ git checkout ${rootVersinName}
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/afs/ifh.de/group/pitz/doocs/amd64_rhel60/root/6.02.00/lib
 gccPath=$(which gcc)
 gppPath=$(which g++)
-export CC=$(gccPath)
-export CXX=$(gppPath)
+export CC=${gccPath}
+export CXX=${gppPath}
 
 #mkdir <builddir> <installdir>
 # build dir
